@@ -17,17 +17,24 @@ public class Singup extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
 
-    @InjectView(R.id.input_name) EditText _nameText;
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_signup) Button _signupButton;
-    @InjectView(R.id.link_login) TextView _loginLink;
+     EditText _nameText;
+     EditText _emailText;
+     EditText _passwordText;
+     Button _signupButton;
+     TextView _loginLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        //ButterKnife.inject(this);
+
+
+        _nameText=(EditText)findViewById(R.id.input_name);
+        _emailText=(EditText)findViewById(R.id.input_email);
+        _passwordText=(EditText)findViewById(R.id.input_password);
+        _signupButton=(Button)findViewById(R.id.btn_signup);
+        _loginLink=(TextView)findViewById(R.id.link_login);
+
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override

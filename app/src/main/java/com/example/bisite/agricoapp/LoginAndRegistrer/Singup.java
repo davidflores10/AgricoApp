@@ -1,6 +1,7 @@
 package com.example.bisite.agricoapp.LoginAndRegistrer;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bisite.agricoapp.Principal.MainActivity;
+import com.example.bisite.agricoapp.Principal.UserLogged;
 import com.example.bisite.agricoapp.R;
 
 public class Singup extends AppCompatActivity {
@@ -88,9 +91,12 @@ public class Singup extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+       // _signupButton.setEnabled(true);
+       // setResult(RESULT_OK, null);
         finish();
+        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+
     }
 
     public void onSignupFailed() {

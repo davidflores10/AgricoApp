@@ -33,7 +33,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bisite.agricoapp.Principal.MainActivity;
+import com.example.bisite.agricoapp.Principal.UserLogged;
 import com.example.bisite.agricoapp.R;
+import com.example.bisite.agricoapp.database.Conexion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-
 
     EditText _emailText;
     EditText _passwordText;
@@ -81,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+
+
+        Conexion conexion=new Conexion(getApplicationContext(),"AgricoAppDB",null,1);
+
     }
 
     public void login() {
@@ -136,6 +142,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+
+        Intent intent = new Intent(getApplicationContext(), UserLogged.class);
+        startActivity(intent);
         finish();
     }
 

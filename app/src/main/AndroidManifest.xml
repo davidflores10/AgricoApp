@@ -23,7 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginAndRegistrer.Singup"></activity>
+        <activity android:name=".LoginAndRegistrer.Singup" />
+        <activity android:name=".Principal.MainActivity" />
+        <activity android:name=".Principal.AddNewCompany" />
+        <activity android:name=".Principal.UserLogged" />
+        <activity
+            android:name=".userInformation.UserInformation"
+            android:label="@string/title_activity_user_information"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".userInformation.RecyclerUserInformationListener" />
+        <activity android:name=".userInformation.RecyclerItemClickListener" />
+        <activity android:name=".datosDeAsociados.DatosAsociado"></activity>
     </application>
 
 </manifest>

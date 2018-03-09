@@ -1,6 +1,8 @@
 package com.example.bisite.agricoapp.LoginAndRegistrer;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.bisite.agricoapp.R;
+import com.example.bisite.agricoapp.VolleySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Singup extends AppCompatActivity {
 
@@ -77,20 +90,105 @@ public class Singup extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
+                        guardarMeta();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
 
 
+    public void guardarMeta() {
+
+        // Obtener valores actuales de los controles
+
+        final String nombr = _nameText.getText().toString();
+        final String contr = _passwordText.getText().toString();
+        final String corre = _emailText.getText().toString();
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("nombre", nombr);
+        map.put("contra", contr);
+        map.put("correo", corre);
+
+
+        // Crear nuevo objeto Json basado en el mapa
+        JSONObject jobject = new JSONObject(map);
+
+        // Actualizar datos en el servidor
+        VolleySingleton.getInstance(getApplication().getApplicationContext()).addToRequestQueue(
+                new JsonObjectRequest(
+                        Request.Method.POST,
+                        "http://www.abenitoc.com/agroapp/registro.php",
+                        jobject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Procesar la respuesta del servidor
+                                procesarRespuesta(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplication().getApplicationContext(), "Error volley", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8" + getParamsEncoding();
+                    }
+                }
+        );
+
+    }
+
+    /**
+     * Procesa la respuesta obtenida desde el sevidor
+     *
+     * @param response Objeto Json
+     */
+    private void procesarRespuesta(JSONObject response) {
+
+        try {
+            // Obtener estado
+            String estado = response.getString("estado");
+
+
+            switch (estado) {
+                case "1":
+                    this.setResult(Activity.RESULT_OK);
+                    // Terminar actividad
+                    onSignupSuccess();
+                    break;
+
+                case "2":
+                    onSignupFailed();
+                    this.setResult(Activity.RESULT_CANCELED);
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
+       Intent i=new Intent(this, Completar_Registro.class);
+        startActivity(i);
     }
 
     public void onSignupFailed() {

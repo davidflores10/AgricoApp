@@ -11,5 +11,13 @@ public class DatosAsociado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_asociado);
+
+        //TODO leer datos de la base de datos
+
+
+
+
+
+
     }
 }

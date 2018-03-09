@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btn_accept_Company.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent intent=new Intent(getApplicationContext(), UserLogged.class);
                 startActivity(intent);
             }

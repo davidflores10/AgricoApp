@@ -26,9 +26,9 @@ public class UserInformation extends AppCompatActivity {
 
         //productos
         ArrayList<String> productos = new ArrayList<>();
-        productos.add("Empresario 1");
-        productos.add("Empresario 2");
-        productos.add("Empresario 3");
+        productos.add("Asociado 1");
+        productos.add("Asociado 2");
+        productos.add("Asociado 3");
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.userDataRecycler);

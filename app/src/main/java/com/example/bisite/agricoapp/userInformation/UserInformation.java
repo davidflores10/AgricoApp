@@ -1,6 +1,8 @@
 package com.example.bisite.agricoapp.userInformation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +10,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.example.bisite.agricoapp.R;
+import com.example.bisite.agricoapp.datosDeAsociados.MostrarDatosAsociado;
 
 import java.util.ArrayList;
 
@@ -54,8 +58,23 @@ public class UserInformation extends AppCompatActivity {
         LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(getApplicationContext(), resId);
         recyclerView.setLayoutAnimation(animationController);*/
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @SuppressLint("DefaultLocale")
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        Intent intent=new Intent(getApplicationContext(), MostrarDatosAsociado.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
 
 
+                }));
     }
 
 

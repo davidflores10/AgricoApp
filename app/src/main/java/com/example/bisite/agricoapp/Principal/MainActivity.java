@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     new AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .setTitle("Salir")
-                            .setMessage("Cerrar")
+                            .setMessage("¿Seguro de que quieres salir?")
                             .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

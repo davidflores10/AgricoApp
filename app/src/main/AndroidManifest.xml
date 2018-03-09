@@ -33,7 +33,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".userInformation.RecyclerUserInformationListener" />
         <activity android:name=".userInformation.RecyclerItemClickListener" />
-        <activity android:name=".datosDeAsociados.DatosAsociado"></activity>
+        <activity android:name=".datosDeAsociados.MostrarDatosAsociado"></activity>
     </application>
 
 </manifest>

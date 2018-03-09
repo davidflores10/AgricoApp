@@ -18,9 +18,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/moneyType"
+            android:id="@+id/producto"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageViewRates"
+            android:layout_toRightOf="@+id/imageViewAsociado"
             android:gravity="center"
             android:textAlignment="gravity"
             android:textSize="30sp" />
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/value"
-            android:layout_toRightOf="@+id/moneyType"
+            android:layout_toRightOf="@+id/producto"
             android:textSize="30sp"
             android:gravity="right"
             android:textAlignment="gravity"
@@ -37,7 +37,7 @@
 
 
         <ImageView
-            android:id="@+id/imageViewRates"
+            android:id="@+id/imageViewAsociado"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="5dp"

@@ -38,7 +38,6 @@ import android.widget.Toast;
 import com.example.bisite.agricoapp.Principal.MainActivity;
 import com.example.bisite.agricoapp.Principal.UserLogged;
 import com.example.bisite.agricoapp.R;
-import com.example.bisite.agricoapp.database.Conexion;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -90,7 +89,8 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
 
             @Override
             public void onClick(View v) {
-                login();
+                request= Volley.newRequestQueue(getApplicationContext());
+                cargarSevicioWeb();
             }
         });
 
@@ -100,12 +100,10 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
             public void onClick(View v) {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), Singup.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                startActivity(intent);
+               // finish();
             }
         });
-
-
-        Conexion conexion=new Conexion(getApplicationContext(),"AgricoAppDB",null,1);
 
     }
 
@@ -139,6 +137,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                login();
 
             }
             else{
@@ -161,8 +160,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         }
         else{
             onLoginSuccess();
-            request= Volley.newRequestQueue(getApplicationContext());
-            cargarSevicioWeb();
+
         }
 
         _loginButton.setEnabled(false);
@@ -183,6 +181,9 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
                     public void run() {
                         onLoginSuccess();
                         progressDialog.dismiss();
+                        Intent i=new Intent(getApplicationContext(), UserLogged.class);
+                        startActivity(i);
+                        finish();
                     }
                 }, 3000);
     }
@@ -207,10 +208,9 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+
         Toast.makeText(getBaseContext(), "Login correcto", Toast.LENGTH_LONG).show();
-        Intent i=new Intent(this, UserLogged.class);
-        startActivity(i);
-        finish();
+
 
     }
 

@@ -18,14 +18,23 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_light">
+            android:background="@color/colorFondo">
 
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="27dp"
+                app:srcCompat="@drawable/form" />
 
             <EditText
                 android:id="@+id/telefono"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/imageView2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:ems="10"

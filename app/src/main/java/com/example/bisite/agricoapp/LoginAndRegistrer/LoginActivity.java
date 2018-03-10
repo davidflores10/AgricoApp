@@ -208,6 +208,9 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         Toast.makeText(getBaseContext(), "Login correcto", Toast.LENGTH_LONG).show();
+        Intent i=new Intent(this, UserLogged.class);
+        startActivity(i);
+        finish();
 
     }
 

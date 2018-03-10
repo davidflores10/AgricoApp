@@ -127,7 +127,6 @@ public class Singup extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
-
                                 procesarRespuesta(response);
                             }
                         },
@@ -171,7 +170,6 @@ public class Singup extends AppCompatActivity {
             switch (estado) {
                 case "1":
                     this.setResult(Activity.RESULT_OK);
-                    // Terminar actividad
                     onSignupSuccess();
                     break;
 

@@ -36,15 +36,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.bisite.agricoapp.R;
 import com.example.bisite.agricoapp.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,11 +56,12 @@ import java.util.Map;
 import static android.Manifest.permission.READ_CONTACTS;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener{
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
-
+    private RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
 
     EditText _emailText;
     EditText _passwordText;
@@ -96,12 +100,60 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    public void cargarSevicioWeb()
+    {
+
+        String url="https://cgomezr.000webhostapp.com/buscarusuario.php?contra="+_passwordText.getText().toString()+"&correo="+_emailText.getText().toString()+"";
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+        request.add(jsonObjectRequest);
+    }
+
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getApplicationContext(), "No se  pudo consultar: "+error, Toast.LENGTH_LONG).show();
+
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+
+        try {
+            if(response.getString("estado").equals("1")) {
+
+                JSONObject js=null;
+                try {
+                    js = response.getJSONObject("usuario");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Error de conexion a base de datos.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
     public void login() {
         Log.d(TAG, "Login");
 
         if (!validate()) {
             onLoginFailed();
             return;
+        }
+        else{
+            onLoginSuccess();
+            request= Volley.newRequestQueue(getApplicationContext());
+            cargarSevicioWeb();
         }
 
         _loginButton.setEnabled(false);
@@ -120,101 +172,11 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
                         onLoginSuccess();
-                        // onLoginFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
-
-    public void guardarMeta() {
-
-        // Obtener valores actuales de los controles
-
-        final String nombr = _emailText.getText().toString();
-        final String con = _passwordText.getText().toString();
-
-
-        HashMap<String, String> map = new HashMap<>();// Mapeo previo
-
-        map.put("nombre", nombr);
-        map.put("contra", con);
-
-
-        // Crear nuevo objeto Json basado en el mapa
-        JSONObject jobject = new JSONObject(map);
-
-        // Actualizar datos en el servidor
-        VolleySingleton.getInstance(getApplication().getApplicationContext()).addToRequestQueue(
-                new JsonObjectRequest(
-                        Request.Method.POST,
-                        "http://www.abenitoc.com/agroapp/login.php",
-                        jobject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                // Procesar la respuesta del servidor
-                                procesarRespuesta(response);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplication().getApplicationContext(), "Error volley", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                ) {
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json; charset=utf-8");
-                        headers.put("Accept", "application/json");
-                        return headers;
-                    }
-
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8" + getParamsEncoding();
-                    }
-                }
-        );
-
-    }
-
-    /**
-     * Procesa la respuesta obtenida desde el sevidor
-     *
-     * @param response Objeto Json
-     */
-    private void procesarRespuesta(JSONObject response) {
-
-        try {
-            // Obtener estado
-            String estado = response.getString("estado");
-
-            switch (estado) {
-                case "1":
-
-                    onLoginSuccess();
-                    this.setResult(Activity.RESULT_OK);
-
-                    break;
-
-                case "2":
-                    onLoginFailed();
-                    this.setResult(Activity.RESULT_CANCELED);
-                    // Terminar actividad
-                    this.finish();
-                    break;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -223,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
-                this.finish();
+
             }
         }
     }
@@ -236,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        finish();
+        Toast.makeText(getBaseContext(), "Login correcto", Toast.LENGTH_LONG).show();
     }
 
     public void onLoginFailed() {

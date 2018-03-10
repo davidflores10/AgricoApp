@@ -119,19 +119,20 @@ public class Singup extends AppCompatActivity {
         VolleySingleton.getInstance(getApplication().getApplicationContext()).addToRequestQueue(
                 new JsonObjectRequest(
                         Request.Method.POST,
-                        "http://www.abenitoc.com/agroapp/registro.php",
+                        "https://cgomezr.000webhostapp.com/altausuario.php",
                         jobject,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
+
                                 procesarRespuesta(response);
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplication().getApplicationContext(), "Error volley", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplication().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -188,6 +189,8 @@ public class Singup extends AppCompatActivity {
         setResult(RESULT_OK, null);
         finish();
        Intent i=new Intent(this, Completar_Registro.class);
+       i.putExtra("correo", _nameText.getText().toString());
+       i.putExtra("contra", _passwordText.getText().toString());
         startActivity(i);
     }
 

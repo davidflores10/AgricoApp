@@ -35,6 +35,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bisite.agricoapp.Principal.MainActivity;
+import com.example.bisite.agricoapp.Principal.UserLogged;
+import com.example.bisite.agricoapp.R;
+import com.example.bisite.agricoapp.database.Conexion;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
 
     private RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
+
 
     EditText _emailText;
     EditText _passwordText;
@@ -98,6 +103,10 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+
+
+        Conexion conexion=new Conexion(getApplicationContext(),"AgricoAppDB",null,1);
+
     }
 
 
@@ -199,6 +208,10 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         Toast.makeText(getBaseContext(), "Login correcto", Toast.LENGTH_LONG).show();
+        Intent i=new Intent(this, UserLogged.class);
+        startActivity(i);
+        finish();
+
     }
 
     public void onLoginFailed() {

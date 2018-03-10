@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bisite.agricoapp.Principal.MainActivity;
+import com.example.bisite.agricoapp.Principal.UserLogged;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -125,7 +127,6 @@ public class Singup extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
-
                                 procesarRespuesta(response);
                             }
                         },
@@ -169,7 +170,6 @@ public class Singup extends AppCompatActivity {
             switch (estado) {
                 case "1":
                     this.setResult(Activity.RESULT_OK);
-                    // Terminar actividad
                     onSignupSuccess();
                     break;
 
@@ -185,13 +185,14 @@ public class Singup extends AppCompatActivity {
     }
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+       // _signupButton.setEnabled(true);
+       // setResult(RESULT_OK, null);
         finish();
        Intent i=new Intent(this, Completar_Registro.class);
        i.putExtra("correo", _nameText.getText().toString());
        i.putExtra("contra", _passwordText.getText().toString());
         startActivity(i);
+
     }
 
     public void onSignupFailed() {

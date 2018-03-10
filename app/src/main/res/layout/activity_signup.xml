@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="#F6FFCD">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +14,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/register"
+        <ImageView android:src="@drawable/registration"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -66,6 +67,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+            android:theme="@style/MaterialDesignButton"
             android:text="Create Account"/>
 
         <TextView android:id="@+id/link_login"

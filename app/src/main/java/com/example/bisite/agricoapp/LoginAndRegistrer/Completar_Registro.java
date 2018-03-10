@@ -1,6 +1,7 @@
 package com.example.bisite.agricoapp.LoginAndRegistrer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.bisite.agricoapp.Principal.MainActivity;
 import com.example.bisite.agricoapp.R;
 import com.example.bisite.agricoapp.VolleySingleton;
 
@@ -176,6 +178,8 @@ public class Completar_Registro extends AppCompatActivity implements View.OnClic
                             getApplicationContext(),
                             "Datos insertados correctamente",
                             Toast.LENGTH_LONG).show();
+                    Intent i=new Intent(this, MainActivity.class);
+                    startActivity(i);
                     // Terminar actividad
                    finish();
                     break;
@@ -218,8 +222,10 @@ public class Completar_Registro extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.enviar:
-                if(validar()){
-                actualizarr();}
+                //if(validar()){
+                //actualizarr();}
+                Intent i=new Intent(this, MainActivity.class);
+                startActivity(i);
 
                 break;
         }

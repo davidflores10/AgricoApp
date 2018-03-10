@@ -226,6 +226,7 @@ public class Completar_Registro extends AppCompatActivity implements View.OnClic
                 //actualizarr();}
                 Intent i=new Intent(this, MainActivity.class);
                 startActivity(i);
+                finish();
 
                 break;
         }

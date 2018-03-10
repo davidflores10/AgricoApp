@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,7 @@
         <activity android:name=".userInformation.RecyclerUserInformationListener" />
         <activity android:name=".userInformation.RecyclerItemClickListener" />
         <activity android:name=".datosDeAsociados.MostrarDatosAsociado"></activity>
+        <activity android:name=".LoginAndRegistrer.Completar_Registro"></activity>
     </application>
 
 </manifest>

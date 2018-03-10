@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.bisite.agricoapp.LoginAndRegistrer.Completar_Registro">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light">
+
+
+            <EditText
+                android:id="@+id/telefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="telefono"
+                android:inputType="phone"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/suelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/telefono"
+                android:layout_below="@+id/telefono"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="suelo"
+                android:inputType="textPersonName"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/cantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/suelo"
+                android:layout_below="@+id/suelo"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="cantidad agua"
+                android:inputType="number|numberDecimal"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/hectareas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/cantidad"
+                android:layout_below="@+id/cantidad"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="hectareas"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/sembradoras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/hectareas"
+                android:layout_below="@+id/hectareas"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº sembradoras"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/tractores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/sembradoras"
+                android:layout_below="@+id/sembradoras"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº tractores"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/remolque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tractores"
+                android:layout_below="@+id/tractores"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº remolques"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/recolectora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/remolque"
+                android:layout_below="@+id/remolque"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº recolectoras"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/arado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/recolectora"
+                android:layout_below="@+id/recolectora"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº arados"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/fumigadora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/arado"
+                android:layout_below="@+id/arado"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="nº fumigadoras"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/tiposemilla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/fumigadora"
+                android:layout_below="@+id/fumigadora"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="tipo semilla"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/ultimafertilizante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tiposemilla"
+                android:layout_below="@+id/tiposemilla"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="ultima fertilizacion"
+                android:inputType="date"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/ultimainsecticida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/ultimafertilizante"
+                android:layout_below="@+id/ultimafertilizante"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="ultimo insecticida"
+                android:inputType="date"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/cantfertilizante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/ultimainsecticida"
+                android:layout_below="@+id/ultimainsecticida"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="cantidad fertilizante"
+                android:inputType="number|numberDecimal"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/cantinsecticida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/cantfertilizante"
+                android:layout_below="@+id/cantfertilizante"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="cantidad insecticida"
+                android:inputType="number|numberDecimal"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/produccionhectarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/cantinsecticida"
+                android:layout_below="@+id/cantinsecticida"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="produccion hectarea"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/fechasiembra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/produccionhectarea"
+                android:layout_below="@+id/produccionhectarea"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="fecha siembra"
+                android:inputType="date"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/fecharecogida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/fechasiembra"
+                android:layout_below="@+id/fechasiembra"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="fecha recogida"
+                android:inputType="date"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/ultimoriego"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/fecharecogida"
+                android:layout_below="@+id/fecharecogida"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="ultimo riego"
+                android:inputType="date"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/semanapreparacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/ultimoriego"
+                android:layout_below="@+id/ultimoriego"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="semana preparación"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/enviar"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/semanapreparacion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="24dp"
+                android:text="REGISTRAR"
+                android:theme="@style/MaterialDesignButton" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

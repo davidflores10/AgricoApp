@@ -3,9 +3,11 @@ package com.example.bisite.agricoapp.LoginAndRegistrer;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,16 +39,34 @@ import com.example.bisite.agricoapp.Principal.MainActivity;
 import com.example.bisite.agricoapp.Principal.UserLogged;
 import com.example.bisite.agricoapp.R;
 import com.example.bisite.agricoapp.database.Conexion;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.bisite.agricoapp.R;
+import com.example.bisite.agricoapp.VolleySingleton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener{
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+
+    private RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
+
 
     EditText _emailText;
     EditText _passwordText;
@@ -89,12 +109,60 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    public void cargarSevicioWeb()
+    {
+
+        String url="https://cgomezr.000webhostapp.com/buscarusuario.php?contra="+_passwordText.getText().toString()+"&correo="+_emailText.getText().toString()+"";
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+        request.add(jsonObjectRequest);
+    }
+
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getApplicationContext(), "No se  pudo consultar: "+error, Toast.LENGTH_LONG).show();
+
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+
+        try {
+            if(response.getString("estado").equals("1")) {
+
+                JSONObject js=null;
+                try {
+                    js = response.getJSONObject("usuario");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Error de conexion a base de datos.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
     public void login() {
         Log.d(TAG, "Login");
 
         if (!validate()) {
             onLoginFailed();
             return;
+        }
+        else{
+            onLoginSuccess();
+            request= Volley.newRequestQueue(getApplicationContext());
+            cargarSevicioWeb();
         }
 
         _loginButton.setEnabled(false);
@@ -113,14 +181,11 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
                         onLoginSuccess();
-                        // onLoginFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -129,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
-                this.finish();
+
             }
         }
     }
@@ -142,10 +207,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        Toast.makeText(getBaseContext(), "Login correcto", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(getApplicationContext(), UserLogged.class);
-        startActivity(intent);
-        finish();
     }
 
     public void onLoginFailed() {

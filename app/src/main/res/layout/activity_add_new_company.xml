@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:text="Nombre de la empresa"
+        android:text="Nombre de la nueva asociación"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.535"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Nombre de Empresa"
+        android:hint="Nombre"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:hint="CIF"
+        android:hint="Password de la asociación"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintVertical_bias="0.507"
@@ -61,7 +61,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Password"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.52"
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline6"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.82" />
 
     <Button
         android:id="@+id/button"
